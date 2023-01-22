@@ -38,7 +38,6 @@ namespace Aflevering1.Controllers
             var shoppingList = _dbContext.ShoppingLists.Find(id);
             return View(shoppingList);
         }
-
         [HttpPost]
         public IActionResult Edit(Shoppinglist shoppinglist)
         {
