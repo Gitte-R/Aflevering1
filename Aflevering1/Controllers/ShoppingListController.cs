@@ -69,12 +69,5 @@ namespace Aflevering1.Controllers
             var shoppingList = _dbContext.ShoppingLists.Find(id);
             return View(shoppingList);
         }
-        [HttpPost]
-        public IActionResult Details(Shoppinglist shoppinglist)
-        {
-            _dbContext.ShoppingLists.Update(shoppinglist);
-            _dbContext.SaveChanges();
-            return RedirectToAction("Index");
-        }
     }
 }
