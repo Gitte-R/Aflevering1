@@ -23,7 +23,6 @@ namespace Aflevering1.Controllers
         {
             return View();
         }
-
         [HttpPost]
         public IActionResult Create(Shoppinglist shoppinglist)
         {
@@ -33,7 +32,6 @@ namespace Aflevering1.Controllers
             _dbContext.SaveChanges();
             return RedirectToAction("Index");
         }
-
         [HttpGet]
         public IActionResult Edit(int id)
         {
@@ -48,7 +46,6 @@ namespace Aflevering1.Controllers
             _dbContext.SaveChanges();
             return RedirectToAction("Index");
         }
-
         public IActionResult Delete(int? id)
         {
             var shoppingList = _dbContext.ShoppingLists.Find(id);
@@ -66,17 +63,12 @@ namespace Aflevering1.Controllers
             _dbContext.SaveChanges();
             return RedirectToAction("Index");
         }
-
-
-
-
         [HttpGet]
         public IActionResult Details(int id)
         {
             var shoppingList = _dbContext.ShoppingLists.Find(id);
             return View(shoppingList);
         }
-
         [HttpPost]
         public IActionResult Details(Shoppinglist shoppinglist)
         {
