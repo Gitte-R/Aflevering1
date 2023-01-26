@@ -1,3 +1,4 @@
+using Aflevering1.Data.Models;
 using Aflevering1.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -10,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+
 
 namespace Aflevering1
 {
@@ -25,8 +27,7 @@ namespace Aflevering1
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ShoppingListDbContext>(options => options.
- UseInMemoryDatabase("ShoppingLists"));
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllersWithViews();
         }
 
@@ -57,5 +58,7 @@ namespace Aflevering1
                     pattern: "{controller=ShoppingList}/{action=Index}/{id?}");
             });
         }
+
     }
+
 }

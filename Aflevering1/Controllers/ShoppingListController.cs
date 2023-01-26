@@ -1,22 +1,25 @@
-﻿using Aflevering1.Models;
+﻿using Aflevering1.Data.Models;
+using Aflevering1.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Aflevering1.Controllers
 {
     public class ShoppingListController : Controller
     {
-        private readonly ShoppingListDbContext _dbContext;
-        public ShoppingListController(ShoppingListDbContext dbContext)
+        private readonly ApplicationDbContext _dbContext;
+        public ShoppingListController(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
         }
         [HttpGet]
         public IActionResult Index()
         {
-            var shoppingLists = _dbContext.ShoppingLists.ToList();
-            return View(shoppingLists);
+            var shopLists = _dbContext.ShoppingLists.ToList();
+            return View(shopLists);
         }
         [HttpGet]
         public IActionResult Create()
@@ -26,8 +29,6 @@ namespace Aflevering1.Controllers
         [HttpPost]
         public IActionResult Create(Shoppinglist shoppinglist)
         {
-            var shoppingListId = _dbContext.ShoppingLists.Select(x => x.Id).Max() + 1;
-            shoppinglist.Id = shoppingListId;
             _dbContext.ShoppingLists.Add(shoppinglist);
             _dbContext.SaveChanges();
             return RedirectToAction("Index");
